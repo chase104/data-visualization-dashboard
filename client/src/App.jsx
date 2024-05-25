@@ -1,3 +1,4 @@
+import React from "react"; // We need to import React here because of Babel transpiling. Otherwise it will throw an error because "React is undefined" in the transpiled code.
 import "./App.css";
 
 function App() {
