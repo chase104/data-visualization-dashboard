@@ -8,16 +8,17 @@ $dark: #333333; // company black color
 $light: #f2f3f3; // light grey color to give contrast to white charts
 
 // Buttons - My basic button styling setup
-$button-radious: 50px;
+$button-radius: 50px;
 $button-padding-x: 30px;
-$button-padding-y: 10px;
+$button-padding-x-sm: 10px;
+$button-padding-y: 4px;
 
-$btn-border-radius: $button-radious;
-$btn-border-radius-sm: $button-radious;
-$btn-border-radius-lg: $button-radious;
+$btn-border-radius: $button-radius;
+$btn-border-radius-sm: $button-radius;
+$btn-border-radius-lg: $button-radius;
 
 $btn-padding-x: $button-padding-x;
-$btn-padding-x-sm: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x-sm;
 $btn-padding-x-lg: $button-padding-x;
 $btn-padding-y: $button-padding-y;
 $btn-padding-y-sm: $button-padding-y;
@@ -37,4 +38,18 @@ $spacers: (
   8: $spacer * 12,
 ) !default;
 
+// Import Bootstrap
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Custom button styles
+.btn-resizing {
+  border-radius: $button-radius;
+  padding: $button-padding-y $button-padding-x;
+
+  @include media-breakpoint-down(sm) {
+    padding: $button-padding-y $button-padding-x-sm;
+  }
+}
