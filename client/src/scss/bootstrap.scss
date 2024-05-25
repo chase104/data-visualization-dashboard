@@ -8,10 +8,11 @@ $dark: #333333; // company black color
 $light: #f2f3f3; // light grey color to give contrast to white charts
 
 // Buttons - My basic button styling setup
-$button-radius: 50px;
-$button-padding-x: 30px;
+$button-radius: 4px;
+$button-padding-x: 1em;
 $button-padding-x-sm: 10px;
-$button-padding-y: 4px;
+$button-padding-y: 0.3em;
+$button-font-size: 14px;
 
 $btn-border-radius: $button-radius;
 $btn-border-radius-sm: $button-radius;
@@ -23,6 +24,8 @@ $btn-padding-x-lg: $button-padding-x;
 $btn-padding-y: $button-padding-y;
 $btn-padding-y-sm: $button-padding-y;
 $btn-padding-y-lg: $button-padding-y;
+
+$btn-font-size: $button-font-size;
 
 // Spacers - My preference for spacing
 $spacer: 1rem;
