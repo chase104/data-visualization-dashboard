@@ -1,0 +1,40 @@
+// Font
+$font-family-sans-serif: "Open Sans", sans-serif;
+
+// Colors - Override Bootstrap default colors to use company colors
+$primary: #42ace1; // lightblue
+$secondary: #ea772f; // orange
+$dark: #333333; // company black color
+$light: #f2f3f3; // light grey color to give contrast to white charts
+
+// Buttons - My basic button styling setup
+$button-radious: 50px;
+$button-padding-x: 30px;
+$button-padding-y: 10px;
+
+$btn-border-radius: $button-radious;
+$btn-border-radius-sm: $button-radious;
+$btn-border-radius-lg: $button-radious;
+
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+
+// Spacers - My preference for spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6,
+  7: $spacer * 8,
+  8: $spacer * 12,
+) !default;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
