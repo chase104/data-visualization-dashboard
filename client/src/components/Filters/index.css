@@ -1,3 +1,25 @@
 .filter-root {
   height: 80px;
 }
+
+.filter-root .input-group {
+  max-width: 400px;
+}
+
+.search-bar {
+  position: relative;
+}
+.search-bar button {
+  height: 100%;
+  max-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.search-bar input {
+  padding-left: 30px;
+}

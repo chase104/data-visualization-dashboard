@@ -15,7 +15,7 @@ const Header = () => {
             src={Logo}
             alt="Logo"
           />
-          Site<span className="text-primary">Header</span>
+          Data<span className="text-primary">Visualized</span>
         </h3>
         <button className="btn btn-secondary btn-resizing text-white fw-bold letter-spacing-1">
           <span className="d-none d-sm-inline pe-2">Refresh Data</span>
