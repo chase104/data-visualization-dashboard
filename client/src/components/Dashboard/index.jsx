@@ -3,17 +3,18 @@ import React from "react";
 import ChartCard from "../ChartCard";
 
 const Dashboard = () => {
-  const items = [
-    "Item 1",
-    "Item 2",
-    "Item 3",
-    "Item 4",
-    "Item 5",
-    "Item 6",
-    "Item 7",
-    "Item 8",
-    "Item 9",
-    "Item 10",
+  // 10 biggest cities in the usa
+  const cities = [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Phoenix",
+    "Philadelphia",
+    "San Antonio",
+    "San Diego",
+    "Dallas",
+    "San Jose",
   ];
   const chartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -33,7 +34,7 @@ const Dashboard = () => {
     <section className="bg-light w-100 min-vh-100">
       <div className="container pt-5">
         <div className="row">
-          {items.map((item, index) => (
+          {cities.map((item, index) => (
             <React.Fragment key={index}>
               <ChartCard key={index} chartData={chartData} />
             </React.Fragment>
