@@ -12,3 +12,17 @@ body {
 body * {
   box-sizing: border-box !important;
 }
+.fa-button {
+  border: 0px;
+  border-color: white !important;
+  background-color: white;
+  color: lightgrey !important;
+  padding: 4px !important;
+  transition: transform 0.1s ease-in-out !important;
+}
+.fa-button:hover {
+  transform: scale(1.1);
+}
+.fa-button:active {
+  transform: scale(0.9);
+}

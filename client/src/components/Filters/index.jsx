@@ -8,9 +8,7 @@ const Filters = () => {
     <section className="bg-white align-items-center w-100 filter-root">
       <div className="container h-100 d-flex justify-content-between align-items-center">
         {/* row here  */}
-        <button className="btn btn-white">
-          <FontAwesomeIcon icon={faSliders} />
-        </button>
+        <FontAwesomeIcon icon={faSliders} />
         <div className="search-bar">
           <button className="btn " type="button">
             <FontAwesomeIcon icon={faSearch} />

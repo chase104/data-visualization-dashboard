@@ -4,7 +4,33 @@ import "./App.css";
 import Header from "./components/Header";
 import Filters from "./components/Filters";
 import Dashboard from "./components/Dashboard";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
+// Register the components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 function App() {
   return (
     <>
