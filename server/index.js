@@ -3,8 +3,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 const axios = require("axios");
+const helmet = require("helmet");
 require("dotenv").config();
 
+app.use(helmet());
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 //because of how the VITE proxy is set up, we need to remove '/server/' from the path

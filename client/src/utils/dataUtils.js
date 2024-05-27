@@ -1,5 +1,52 @@
 import { Line, Bar, Pie, Doughnut, Radar, PolarArea } from "react-chartjs-2";
 
+export const returnGraphs = (cities) => {
+  const keys = Object.keys(cities);
+  const graphs = [
+    {
+      type: "bar",
+      comparisonType: "cities",
+      yTitle: "AC Output (kWh)",
+      title: "Average Annual Solar Output by City",
+      description:
+        "Average solar output generated when using 4 solar panels measured in kWh.",
+      unit: "kWh",
+      cities: keys,
+    },
+    {
+      type: "line",
+      comparisonType: "month",
+      yTitle: "AC Output (kWh)",
+      title: "Solar AC Output By Month",
+      description:
+        "Average solar output generated when using 4 solar panels within the city measured in kWh.",
+      cities: [keys[0]],
+    },
+    {
+      type: "pie",
+      comparisonType: "soil",
+      yTitle: "Percentage",
+      title: "Solar Panel Captured Energy Potential",
+      description:
+        "The potential energy captured by the solar panels and the loss due to soiling by dust, dirt, and other particles.",
+      unit: "kWh",
+      cities: [keys[0]],
+    },
+  ];
+
+  for (let i = 1; i < keys.length; i++) {
+    graphs.push({
+      type: i % 2 === 0 ? "bar" : "line",
+      comparisonType: "month",
+      yTitle: "AC Output (kWh)",
+      title: `Solar AC Output By Month for ${keys[i]}`,
+      description: `Average solar output generated using 4 solar panels within ${keys[i]} measured in kWh.`,
+      cities: [keys[i]],
+    });
+  }
+  return graphs;
+};
+
 export const getComponent = (type) => {
   switch (type) {
     case "line":
@@ -19,7 +66,8 @@ export const getComponent = (type) => {
   }
 };
 
-const createCityArray = (graphSpecs, cities) => {
+export const createCityArray = (graphSpecs, cities) => {
+  // here we loop through the cities in the graphSpecs.cities array and get the annual ac output
   let data = [];
   graphSpecs.cities.forEach((city) => {
     let cityData = cities[city];
@@ -29,7 +77,7 @@ const createCityArray = (graphSpecs, cities) => {
   return data;
 };
 
-const getOutputByMonth = (graphSpecs, cities) => {
+export const getOutputByMonth = (graphSpecs, cities) => {
   //geting the monthly ac output from the on city in the graphSpecs.cities array
   let data = [];
   let cityData = cities[graphSpecs.cities[0]];
@@ -43,7 +91,6 @@ const getOutputByMonth = (graphSpecs, cities) => {
 const createSoilArray = (graphSpecs, cities) => {
   // array of 2 values, integer for soiling loss and integer for captured energy
   let data = [];
-  console.log(cities, graphSpecs.cities[0], cities[graphSpecs.cities[0]]);
   let cityData = cities[graphSpecs.cities[0]];
   // just for january due to soiling[0]
   let soilingInteger = cityData.inputs.soiling[0];

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCitiesData } from "../../redux/citiesSlice";
 import ChartCard from "../ChartCard";
 import axios from "axios";
+import { returnGraphs } from "../../utils/dataUtils";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -12,51 +13,8 @@ const Dashboard = () => {
   let keys = Object.keys(cities);
   let emptyState = cities[keys[0]] === null;
 
-  const graphs = [
-    {
-      type: "bar",
-      comparisonType: "cities",
-      yTitle: "AC Output (kWh)",
-      title: "Average Annual Solar Output by City",
-      description:
-        "Average solar output generated when using 4 solar panels in kWh.",
-      unit: "kWh",
-      cities: keys,
-    },
-    {
-      type: "line",
-      comparisonType: "month",
-      yTitle: "AC Output (kWh)",
-      title: "Solar AC Output By Month",
-      description:
-        "Average solar output generated when using 4 solar panels in kWh within the city.",
-      cities: [keys[0]],
-    },
-    {
-      type: "pie",
-      comparisonType: "soil",
-      yTitle: "Percentage",
-      title: "Solar Panel Captured Energy Potential",
-      description:
-        "The potential energy captured by the solar panels and the loss due to soiling by dust, dirt, and other particles.",
-      unit: "kWh",
-      cities: [keys[0]],
-    },
-  ];
-
-  for (let i = 1; i < keys.length; i++) {
-    graphs.push({
-      type: i % 2 === 0 ? "bar" : "line",
-      comparisonType: "month",
-      yTitle: "AC Output (kWh)",
-      title: `Solar AC Output By Month for ${keys[i]}`,
-      description: `Average solar output generated using 4 solar panels in kWh within ${keys[i]}.`,
-      cities: [keys[i]],
-    });
-  }
-
+  const graphs = returnGraphs(cities);
   console.log(graphs);
-
   const returnUiGraphs = (searchValue, graphs) => {
     let uiGraphs = [];
     graphs.forEach((graph) => {

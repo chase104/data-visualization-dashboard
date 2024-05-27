@@ -4,7 +4,7 @@ import React from "react";
 import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faExpand } from "@fortawesome/free-solid-svg-icons";
-import { convertData, getComponent } from "../../utils/dataManipulation";
+import { convertData, getComponent } from "../../utils/dataUtils";
 import CustomSpinner from "../CustomSpinner";
 import CustomTooltip from "../Tooltip";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,20 +13,22 @@ import { setSelectedCity } from "../../redux/selectedCitySlice";
 const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
+  let scales = undefined;
+  if (graphSpecs.type === "pie" || graphSpecs.type === "doughnut") {
+    scales = {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: graphSpecs.yTitle,
+        },
+      },
+    };
+  }
+
   const options = {
     maintainAspectRatio: false,
-    scales: {
-      y:
-        graphSpecs.type !== "pie" && graphSpecs.type !== "doughnut"
-          ? {
-              beginAtZero: false,
-              title: {
-                display: true,
-                text: graphSpecs.yTitle,
-              },
-            }
-          : undefined, // undefined to remove y-axis for the pie chart
-    },
+    scales,
   };
 
   // need to convert citydata to look like chartData
@@ -39,14 +41,13 @@ const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
   }
 
   const handleClick = () => {
-    console.log("clicked");
     dispatch(setSelectedCity({ chartData, graphSpecs }));
   };
 
   return (
     <div
       className={`col-12 ${
-        !isInsideOverlay && "col-sm-6 col-md-6 col-lg-4"
+        !isInsideOverlay && "col-md-6 col-lg-6 col-xl-4"
       } mb-5`}
     >
       <div className="card custom-card h-100">

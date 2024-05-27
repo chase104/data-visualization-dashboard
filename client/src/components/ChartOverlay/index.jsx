@@ -12,7 +12,6 @@ const ChartOverlay = () => {
   const selectedCity = useSelector((state) => state.selectedCity);
 
   const cities = useSelector((state) => state.cities);
-  console.log(selectedCity);
   const handleClose = () => {
     dispatch(setSelectedCity(null));
   };

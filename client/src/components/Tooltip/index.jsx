@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef, useState } from "react";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // eslint-disable-next-line react/prop-types
 const CustomTooltip = ({ children, tooltipText, placement = "top" }) => {

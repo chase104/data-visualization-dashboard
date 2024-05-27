@@ -3,6 +3,11 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 
 export default defineConfig({
   plugins: [reactRefresh()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.js",
+  },
   server: {
     proxy: {
       "/server": {
