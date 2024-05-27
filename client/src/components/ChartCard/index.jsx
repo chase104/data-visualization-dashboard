@@ -8,7 +8,7 @@ import { convertData, getComponent } from "../../utils/dataManipulation";
 import CustomSpinner from "../CustomSpinner";
 import CustomTooltip from "../Tooltip";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCity } from "../../redux/selectedCity";
+import { setSelectedCity } from "../../redux/selectedCitySlice";
 
 const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
   const dispatch = useDispatch();

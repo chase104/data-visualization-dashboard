@@ -21,7 +21,7 @@ const Header = () => {
           <h3 className="my-0 h-100 d-flex align-items-center">
             Energy<span className="text-primary">Visualized</span>
           </h3>
-          <p className="h-100 m-0 d-flex align-items-center ms-3">
+          <p className="h-100 m-0 d-none  d-md-flex align-items-center ms-3">
             - Data curtosy of
             <a
               className="ms-1"

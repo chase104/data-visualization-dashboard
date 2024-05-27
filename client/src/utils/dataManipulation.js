@@ -88,8 +88,8 @@ export function convertData(graphSpecs, cities) {
     datasets: [
       {
         label: graphSpecs.yTitle,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(66, 172, 225,0.2)",
+        borderColor: "rgba(66, 172, 225,1)",
         borderWidth: 1,
         hoverBackgroundColor: "rgba(75,192,192,0.4)",
         hoverBorderColor: "rgba(75,192,192,1)",

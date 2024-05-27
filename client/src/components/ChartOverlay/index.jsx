@@ -2,7 +2,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCity } from "../../redux/selectedCity";
+import { setSelectedCity } from "../../redux/selectedCitySlice";
 import ChartCard from "../ChartCard";
 import "./index.css";
 
