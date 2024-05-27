@@ -82,7 +82,7 @@ The layout includes a header, a “filter” section for searching and future fi
 
 - Added expand and tooltip options for higher-resolution understanding of chart data.
 - Added search functionality that filters based on chart title and cities used in a given graph.
-- Added option to refresh the data pulled from the API (although there is a simple caching layer that limits API call number).
+- Added option to refresh the data pulled from the API (although there is a simple caching layer to limit API call number).
 
 ## Testing and Deployment
 
@@ -133,7 +133,7 @@ The layout includes a header, a “filter” section for searching and future fi
 
 - For a small app, JavaScript is the quick and doable option here. For a larger app, complex schema management would be easier to handle with TypeScript.
 
-### Implement Vitest testing
+### Implement Vitest Unit Testing
 
 ## Conclusion
 
