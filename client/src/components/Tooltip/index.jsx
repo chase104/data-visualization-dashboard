@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 // eslint-disable-next-line react/prop-types
-const CustomTooltip = ({ children, tooltipText, placement = "top" }) => {
+const CustomTooltip = ({ children, tooltipText, placement = "left" }) => {
   const [show, setShow] = useState(false);
   const tooltipRef = useRef(null);
 

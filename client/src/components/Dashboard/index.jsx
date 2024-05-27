@@ -33,21 +33,25 @@ const Dashboard = () => {
 
   // I can initiate the data call here on first render if there is no data in the slice.
   useEffect(() => {
-    if (emptyState) {
-      if (localStorage.getItem("solarData")) {
-        let data = JSON.parse(localStorage.getItem("solarData"));
-        setTimeout(() => {
-          // timeout to simulate a network delay
-          dispatch(setCitiesData(data));
-        }, [1000]);
-      } else {
-        axios(`/server/cities/solar?cityNames=${JSON.stringify(keys)}`).then(
-          (res) => {
-            localStorage.setItem("solarData", JSON.stringify(res.data));
-            dispatch(setCitiesData(res.data));
-          }
-        );
+    try {
+      if (emptyState) {
+        if (localStorage.getItem("solarData")) {
+          let data = JSON.parse(localStorage.getItem("solarData"));
+          setTimeout(() => {
+            // timeout to simulate a network delay
+            dispatch(setCitiesData(data));
+          }, [1000]);
+        } else {
+          axios(`/server/cities/solar?cityNames=${JSON.stringify(keys)}`).then(
+            (res) => {
+              localStorage.setItem("solarData", JSON.stringify(res.data));
+              dispatch(setCitiesData(res.data));
+            }
+          );
+        }
       }
+    } catch (err) {
+      console.log(err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cities]);

@@ -22,7 +22,7 @@ const Header = () => {
             Energy<span className="text-primary">Visualized</span>
           </h3>
           <p className="h-100 m-0 d-none  d-md-flex align-items-center ms-3">
-            - Data curtosy of
+            - Data courtesy of
             <a
               className="ms-1"
               href="https://developer.nrel.gov/docs/"
