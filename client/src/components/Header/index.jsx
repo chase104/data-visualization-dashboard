@@ -28,7 +28,7 @@ const Header = () => {
               href="https://developer.nrel.gov/docs/"
               target="_"
             >
-              NREL api
+              NREL live api
             </a>
           </p>
         </div>

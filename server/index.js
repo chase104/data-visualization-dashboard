@@ -7,6 +7,14 @@ require("dotenv").config();
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+//because of how the VITE proxy is set up, we need to remove '/server/' from the path
+// so we can hit the correct endpoint
+app.use((req, res, next) => {
+  req.url = req.url.replace(/^\/server/, "");
+  next();
+});
+
+// nomrally on a larger app we would move the controller function here to another file and import it.
 app.get("/cities/solar", async (req, res) => {
   let cityNames = JSON.parse(req.query.cityNames);
   let cities = {};

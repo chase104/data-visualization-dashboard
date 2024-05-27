@@ -12,7 +12,7 @@ const Dashboard = () => {
   let keys = Object.keys(cities);
   let emptyState = cities[keys[0]] === null;
 
-  let graphs = [
+  const graphs = [
     {
       type: "bar",
       comparisonType: "cities",

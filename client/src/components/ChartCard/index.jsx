@@ -16,13 +16,16 @@ const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
   const options = {
     maintainAspectRatio: false,
     scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: graphSpecs.yTitle,
-        },
-      },
+      y:
+        graphSpecs.type !== "pie" && graphSpecs.type !== "doughnut"
+          ? {
+              beginAtZero: false,
+              title: {
+                display: true,
+                text: graphSpecs.yTitle,
+              },
+            }
+          : undefined, // undefined to remove y-axis for the pie chart
     },
   };
 

@@ -82,13 +82,16 @@ export function convertData(graphSpecs, cities) {
     data = createSoilArray(graphSpecs, cities);
     labels = ["Loss due to soiling", "Captured Energy"];
   }
-
+  let backgroundColor = ["rgba(66, 172, 225,0.2)"];
+  if (graphSpecs.type === "pie" || graphSpecs.type === "doughnut") {
+    backgroundColor = ["rgba(66, 172, 225,0.2)", "rgba(66, 172, 225,0.6)"];
+  }
   const convertedData = {
     labels,
     datasets: [
       {
         label: graphSpecs.yTitle,
-        backgroundColor: "rgba(66, 172, 225,0.2)",
+        backgroundColor,
         borderColor: "rgba(66, 172, 225,1)",
         borderWidth: 1,
         hoverBackgroundColor: "rgba(75,192,192,0.4)",
