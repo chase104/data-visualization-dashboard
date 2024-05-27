@@ -1,5 +1,5 @@
 import { Line, Bar, Pie, Doughnut, Radar, PolarArea } from "react-chartjs-2";
-
+import axios from "axios";
 export const returnGraphs = (cities) => {
   const keys = Object.keys(cities);
   const graphs = [
@@ -150,3 +150,31 @@ export function convertData(graphSpecs, cities) {
 
   return convertedData;
 }
+
+export const getCityData = async (keys) => {
+  let cityData;
+  let storageData = localStorage.getItem("solarData");
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  if (storageData) {
+    cityData = JSON.parse(storageData);
+    await delay(1000); // 1-second delay
+  } else {
+    try {
+      let response = await axios(
+        `/server/cities/solar?cityNames=${encodeURIComponent(
+          JSON.stringify(keys)
+        )}`
+      );
+      cityData = response.data;
+      // Optionally, save the data back to local storage for future use
+      localStorage.setItem("solarData", JSON.stringify(cityData));
+    } catch (err) {
+      console.error("Failed to fetch city data:", err);
+      cityData = null;
+    }
+  }
+
+  return cityData;
+};

@@ -2,12 +2,12 @@
 import React from "react";
 import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faSliders } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchValue } from "../../redux/searchSlice";
+import { setSearchValue } from "../../redux/citiesSlice";
 const Filters = () => {
   const dispatch = useDispatch();
-  const searchValue = useSelector((state) => state.searchValue);
+  const { searchValue } = useSelector((state) => state.citiesSlice);
   return (
     <section className="bg-white align-items-center w-100 filter-root">
       <div className="container h-100 d-flex justify-content-end align-items-center">

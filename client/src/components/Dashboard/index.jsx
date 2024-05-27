@@ -3,18 +3,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCitiesData } from "../../redux/citiesSlice";
 import ChartCard from "../ChartCard";
-import axios from "axios";
-import { returnGraphs } from "../../utils/dataUtils";
+import { getCityData, returnGraphs } from "../../utils/dataUtils";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const cities = useSelector((state) => state.cities);
-  const searchValue = useSelector((state) => state.searchValue);
-  let keys = Object.keys(cities);
+  const { cities, keys, searchValue } = useSelector(
+    (state) => state.citiesSlice
+  );
   let emptyState = cities[keys[0]] === null;
 
   const graphs = returnGraphs(cities);
-  console.log(graphs);
   const returnUiGraphs = (searchValue, graphs) => {
     let uiGraphs = [];
     graphs.forEach((graph) => {
@@ -35,20 +33,9 @@ const Dashboard = () => {
   useEffect(() => {
     try {
       if (emptyState) {
-        if (localStorage.getItem("solarData")) {
-          let data = JSON.parse(localStorage.getItem("solarData"));
-          setTimeout(() => {
-            // timeout to simulate a network delay
-            dispatch(setCitiesData(data));
-          }, [1000]);
-        } else {
-          axios(`/server/cities/solar?cityNames=${JSON.stringify(keys)}`).then(
-            (res) => {
-              localStorage.setItem("solarData", JSON.stringify(res.data));
-              dispatch(setCitiesData(res.data));
-            }
-          );
-        }
+        getCityData(keys).then((data) => {
+          dispatch(setCitiesData(data));
+        });
       }
     } catch (err) {
       console.log(err);

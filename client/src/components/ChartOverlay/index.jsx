@@ -2,31 +2,30 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCity } from "../../redux/selectedCitySlice";
 import ChartCard from "../ChartCard";
 import "./index.css";
+import { setSelectedCity } from "../../redux/citiesSlice";
 
 const ChartOverlay = () => {
   const dispatch = useDispatch();
 
-  const selectedCity = useSelector((state) => state.selectedCity);
-
-  const cities = useSelector((state) => state.cities);
+  const { cities, selectedCity } = useSelector((state) => state.citiesSlice);
   const handleClose = () => {
-    dispatch(setSelectedCity(null));
+    dispatch(setSelectedCity({}));
   };
 
+  const show = Object.keys(selectedCity).length;
   return (
     <div>
       <Modal
         className="overlay-container"
-        show={selectedCity !== null}
+        show={Object.keys(selectedCity).length}
         onHide={handleClose}
         centered
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          {selectedCity && (
+          {show && (
             <ChartCard
               graphSpecs={selectedCity.graphSpecs}
               cities={cities}

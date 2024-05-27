@@ -8,11 +8,10 @@ import { convertData, getComponent } from "../../utils/dataUtils";
 import CustomSpinner from "../CustomSpinner";
 import CustomTooltip from "../Tooltip";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCity } from "../../redux/selectedCitySlice";
+import { setSelectedCity } from "../../redux/citiesSlice.js";
 
-const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
+const ChartCard = ({ graphSpecs, isInsideOverlay, cities, emptyState }) => {
   const dispatch = useDispatch();
-  const cities = useSelector((state) => state.cities);
   let scales = undefined;
   if (graphSpecs.type === "pie" || graphSpecs.type === "doughnut") {
     scales = {
@@ -25,7 +24,6 @@ const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
       },
     };
   }
-
   const options = {
     maintainAspectRatio: false,
     scales,
@@ -35,15 +33,19 @@ const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
 
   let ChartComponent = getComponent(graphSpecs.type);
   let chartData;
-
   if (!emptyState) {
     chartData = convertData(graphSpecs, cities);
+  }
+
+  if (isInsideOverlay) {
+    console.log("OVERLAY ", chartData);
+  } else if (graphSpecs.type === "pie") {
+    console.log("NORMAL ", chartData);
   }
 
   const handleClick = () => {
     dispatch(setSelectedCity({ chartData, graphSpecs }));
   };
-
   return (
     <div
       className={`col-12 ${
