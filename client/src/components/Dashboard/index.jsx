@@ -18,7 +18,7 @@ const Dashboard = () => {
       yTitle: "AC Output (kWh)",
       title: "Average Annual Solar Output by City",
       description:
-        "Average solar output generated using 4 solar panels in kWh.",
+        "Average solar output generated when using 4 solar panels in kWh.",
       unit: "kWh",
       cities: keys,
     },
@@ -28,7 +28,7 @@ const Dashboard = () => {
       yTitle: "AC Output (kWh)",
       title: "Solar AC Output By Month",
       description:
-        "Average solar output generated using 4 solar panels in kWh within the city.",
+        "Average solar output generated when using 4 solar panels in kWh within the city.",
       cities: [keys[0]],
     },
     {
@@ -41,26 +41,20 @@ const Dashboard = () => {
       unit: "kWh",
       cities: [keys[0]],
     },
-    {
-      type: "line",
-      comparisonType: "month",
-      yTitle: "AC Output (kWh)",
-      title: "Solar AC Output By Month",
-      description:
-        "Average solar output generated using 4 solar panels in kWh within the city.",
-      cities: [keys[1]],
-    },
-
-    {
-      type: "bar",
-      comparisonType: "month",
-      yTitle: "AC Output (kWh)",
-      title: "Solar AC Output By Month",
-      description:
-        "Average solar output generated using 4 solar panels in kWh within the city.",
-      cities: [keys[2]],
-    },
   ];
+
+  for (let i = 1; i < keys.length; i++) {
+    graphs.push({
+      type: i % 2 === 0 ? "bar" : "line",
+      comparisonType: "month",
+      yTitle: "AC Output (kWh)",
+      title: `Solar AC Output By Month for ${keys[i]}`,
+      description: `Average solar output generated using 4 solar panels in kWh within ${keys[i]}.`,
+      cities: [keys[i]],
+    });
+  }
+
+  console.log(graphs);
 
   // I can initiate the data call here on first render if there is no data in the slice.
   useEffect(() => {
@@ -92,6 +86,7 @@ const Dashboard = () => {
               <ChartCard
                 graphSpecs={graphSpecs}
                 cities={cities}
+                showExpand={true}
                 emptyState={emptyState}
               />
             </React.Fragment>

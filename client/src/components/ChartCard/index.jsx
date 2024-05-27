@@ -7,8 +7,12 @@ import { faCircleInfo, faExpand } from "@fortawesome/free-solid-svg-icons";
 import { convertData, getComponent } from "../../utils/dataManipulation";
 import CustomSpinner from "../CustomSpinner";
 import CustomTooltip from "../Tooltip";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedCity } from "../../redux/selectedCity";
 
-const ChartCard = ({ graphSpecs, cities, emptyState }) => {
+const ChartCard = ({ graphSpecs, isInsideOverlay, emptyState }) => {
+  const dispatch = useDispatch();
+  const cities = useSelector((state) => state.cities);
   const options = {
     maintainAspectRatio: false,
     scales: {
@@ -31,8 +35,17 @@ const ChartCard = ({ graphSpecs, cities, emptyState }) => {
     chartData = convertData(graphSpecs, cities);
   }
 
+  const handleClick = () => {
+    console.log("clicked");
+    dispatch(setSelectedCity({ chartData, graphSpecs }));
+  };
+
   return (
-    <div className="col-12 col-sm-6 col-md-4 mb-5">
+    <div
+      className={`col-12 ${
+        !isInsideOverlay && "col-sm-6 col-md-6 col-lg-4"
+      } mb-5`}
+    >
       <div className="card custom-card h-100">
         <div className="card-body d-flex justify-content-between align-items-start">
           <div className="d-flex flex-column">
@@ -44,9 +57,11 @@ const ChartCard = ({ graphSpecs, cities, emptyState }) => {
             </p>
           </div>
           <div className="d-flex">
-            <button className="btn btn-white fa-button">
-              <FontAwesomeIcon icon={faExpand} />
-            </button>
+            {!isInsideOverlay && (
+              <button className="btn btn-white fa-button" onClick={handleClick}>
+                <FontAwesomeIcon icon={faExpand} />
+              </button>
+            )}
 
             <CustomTooltip tooltipText={graphSpecs.description}>
               <FontAwesomeIcon icon={faCircleInfo} />

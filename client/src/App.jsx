@@ -17,6 +17,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import ChartOverlay from "./components/ChartOverlay";
 
 // Register the components
 ChartJS.register(
@@ -37,6 +38,8 @@ function App() {
       <Header />
       <Filters />
       <Dashboard />
+
+      <ChartOverlay />
     </>
   );
 }
