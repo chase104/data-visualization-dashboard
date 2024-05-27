@@ -1,4 +1,4 @@
-# Responsive Dashboard Project
+# Project Overview
 
 ## Dashboard
 
@@ -8,13 +8,11 @@
 
 ![Website Modal](./markdown_images/app_modal_image.jpg)
 
-## Project Overview
-
-### Purpose
+## Purpose
 
 The goal of this project is to create a responsive dashboard using React and Chart.js that displays data in various formats.
 
-### Requirements
+## Requirements
 
 - Integrate Chart.js with React to display at least three different types of charts.
 - Ensure the dashboard is responsive and works well on both desktop and mobile devices.
@@ -33,21 +31,25 @@ The goal of this project is to create a responsive dashboard using React and Cha
 - **Bootstrap** and **SASS** for modern CSS practices.
 - **Redux Toolkit** for modern state management.
 
+#### Wireframe Creation
+
+Utilized design tools to create mockups of web-app layout prior to implementing code solutions.
+
 #### Project Initialization:
 
 - Used `npm create vite@latest` to initialize the client folder of the project.
 - Configured Vite to use Babel when compiling React code into vanilla JavaScript.
-- Created a server directory for a simple Node.js Express server for hosting and API integration.
-- Configured Vite frontend to proxy requests to the localhost server port during development.
-- Configured the server to serve static frontend files and handle single frontend requests for API information.
-- Configured the server to use `helmet.js` for automatic essential security header setting.
-- Setup `dotenv` for secure storage of API keys to avoid exposure in source code or repository.
-- Used `npm install` to install Bootstrap, Chart.js, react-chart.js-2, react-redux, @reduxjs/toolkit, fontawesome (icons), sass (modern CSS practice), axios, express, and dotenv.
-- Setup and imported Sass files to import Bootstrap and override key values such as primary and secondary theme colors.
+- Created `server` directory for simple Node.js Express server for hosting and API integration.
+- Configured Vite frontend to proxy requests to localhost server port during development.
+- Configured server to serve static frontend files and handle single frontend request for API information.
+- Configured server to use `helmet.js` for automatic essential security header setting.
+- Setup `dotenv` for secure storage of API key so as to not expose it in source code or repository.
+- Used `npm install` to install bootstrap, chart.js, react-chartjs-2, react-redux, @reduxjs/toolkit, fontawesome (icons), sass (modern CSS practice), axios, express, and dotenv.
+- Setup and imported Sass files to import bootstrap and override key values such as primary and secondary theme colors.
 
-## Design and Layout
+### Design and Layout
 
-### Wireframe:
+#### Wireframe:
 
 ![Website Dashboard Wireframe](./markdown_images/dashboard.jpg)
 
@@ -55,44 +57,46 @@ The goal of this project is to create a responsive dashboard using React and Cha
 
 The layout includes a header, a “filter” section for searching and future filtering options, a main content area for displaying charts, and a modal for larger chart viewing.
 
-### Responsive Design:
+#### Responsive Design:
 
 - Utilized Bootstrap Container and Grid tools along with Flexbox for layout and responsiveness.
 - Utilized Bootstrap component display control to remove less-essential content on smaller screens.
 
-## Implementation
+### Implementation
 
-### Data Integration:
+#### Data Integration:
 
 - Initially used static data when setting up site layout and chart placement.
-- Integrated NREL API to pull live energy data on 10 cities.
+- Integrated NREL API to pull live energy data on 10 cities and parse to fit Chart.js schemas.
 
-### Chart Types:
+#### Chart Types:
 
-- **Line Chart** for city-specific solar energy capture rate trends over a 12-month period.
-- **Bar Chart** for comparison of annual capture rates between various cities.
-- **Pie Chart** for displaying city-specific portions of captured solar energy potential vs loss due to soiling (dust, dirt, etc.).
+- Line Chart for city-specific solar energy capture trends over a 12-month period.
+- Bar Chart for comparison of annual capture rates between various cities.
+- Bar Chart for city-specific solar energy capture rate trends over a 12-month period.
+- Pie Chart for displaying city-specific portions of captured solar energy potential vs. loss due to soiling (dust, dirt, etc.).
 
-### State Management:
+#### State Management:
 
-- Managed state using Redux Toolkit and React’s useState hook.
+- Managed state using the more modern Redux Toolkit and React’s useState hook.
 - Passed state props as needed due to smaller codebase size.
 
-### Interactivity:
+#### Interactivity:
 
 - Added expand and tooltip options for higher-resolution understanding of chart data.
 - Added search functionality that filters based on chart title and cities used in a given graph.
-- Added option to refresh the data pulled from the API (although there is a simple caching layer to limit API call number).
+- Added option to refresh the data pulled from the API (with a simple caching layer to limit the number of API calls).
 
-## Testing and Deployment
+### Testing and Deployment
 
-### Testing:
+#### Testing:
 
 - Performed manual testing on various devices (desktop, tablet, mobile).
+- Plans to implement Jest or Vitest for unit testing.
 
-### Deployment:
+#### Deployment:
 
-- Configured the application and deployed to Render.com as a web service.
+- Configured the application and deployed to Render.com as a web-service.
 
 ## Challenges and Solutions
 
@@ -101,23 +105,15 @@ The layout includes a header, a “filter” section for searching and future fi
 - **Problem**: Ensuring charts were responsive on all devices.
 - **Solution**: Used Bootstrap responsive grid to control charts-per-row at a given viewport width.
 
-### Challenge: Implementing unique data set from API
+### Challenge: Implementing Unique Data Set from API
 
 - **Problem**: The schema that Chart.js expects and the data supplied by the API were vastly different.
-- **Solution**: Created a parsing function (convertData) that pulls relevant data from the returned API data and produces a Chart.js-friendly object structure.
+- **Solution**: Created a parsing function (`convertData`) that pulls relevant data from the returned API data and produces a Chart.js-friendly object structure.
 
-### Consideration:
-
-- Keeping the schemas orderly was difficult due to their complexity. Using TypeScript for a data-intensive project such as this could have presented significant advantages.
-
-### Challenge: Implementing DRY programming for various charts
+### Challenge: Implementing DRY Programming for Various Charts
 
 - **Problem**: Different chart types expect and require different inputs and configuration.
 - **Solution**: Implement ternary and conditional measures to produce correct data and structure for different chart types.
-
-### Consideration:
-
-- Implementing DRY programming here ended up being quite intrusive and intensive. There could be some advantages to not implementing full-DRY practices here and duplicating some logic to make the program easier to understand.
 
 ## Future Improvements
 
@@ -125,15 +121,17 @@ The layout includes a header, a “filter” section for searching and future fi
 
 - More manual filters other than searching.
 - Chart-specific tools for changing city, metrics, etc. on a specific chart.
-- Implement logic to support multi-word city names. Currently, the app handles one-word city names.
+- Implement logic to support multi-word city names. For timeline purposes, the app currently handles one-word city names.
 - Add a “pinning” feature to allow specific graphs to always be displayed first.
-- Add additional API integration to increase the number of chart types. The data from the single API serves for Line, Bar, and Pie charts only. Other API data would be needed to justify the usage of other chart types.
+- Add additional API integration to increase the number of chart types. The data from the single API serves for Line, Bar, and Pie charts only. Other API data would be needed to justify usage of other chart types.
 
 ### Move to TypeScript
 
-- For a small app, JavaScript is the quick and doable option here. For a larger app, complex schema management would be easier to handle with TypeScript.
+- Given this is a small app, JavaScript was the quick and easy option here. Complex schema management would be easier to handle with TypeScript.
 
 ### Implement Vitest Unit Testing
+
+- Switch from current design tool to a more powerful and standard design tool like Figma.
 
 ## Conclusion
 
