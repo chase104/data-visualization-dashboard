@@ -12,21 +12,9 @@ import { setSelectedCity } from "../../redux/citiesSlice.js";
 
 const ChartCard = ({ graphSpecs, isInsideOverlay, cities, emptyState }) => {
   const dispatch = useDispatch();
-  let scales = undefined;
-  if (graphSpecs.type === "pie" || graphSpecs.type === "doughnut") {
-    scales = {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: graphSpecs.yTitle,
-        },
-      },
-    };
-  }
+
   const options = {
     maintainAspectRatio: false,
-    scales,
   };
 
   // need to convert citydata to look like chartData
